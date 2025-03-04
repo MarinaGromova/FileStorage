@@ -3,11 +3,11 @@ import { useBackGroundResize } from './components/Project/hooks/useBackGroundRes
 import { Layout } from './components/Project/Layout/Layout'
 
 function App() {
-	const color = useBackGroundResize()
+	const colorObject = useBackGroundResize()
 
 	return (
 		<>
-			<div style={color}>
+			<div style={colorObject}>
 				<Layout />
 			</div>
 		</>

@@ -16,12 +16,12 @@ export const Layout = () => {
 			<div className={styles.wrapper}>
 				<Children
 					children={() => (
-						<button>
+						<button className={styles.button}>
 							<img src='/header/profile.svg' alt='icon minion' />
 						</button>
 					)}
 				/>
-				<button>
+				<button className={styles.button}>
 					<img src='/header/menu.svg' alt='icon menu' />
 				</button>
 			</div>
