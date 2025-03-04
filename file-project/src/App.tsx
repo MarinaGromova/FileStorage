@@ -1,23 +1,19 @@
-import './App.scss'
-import { NewTodo } from './components/Project/newTodo/NewTodo'
+import './App.module.scss'
+import { useBackGroundResize } from './components/Project/hooks/useBackGroundResize'
+import { Layout } from './components/Project/Layout/Layout'
 
 function App() {
-	// const width = useResizeDetector()
-	return <NewTodo />
-	// <>
-	{
-		/* <h4>Меняем цвет иконки при ховере кнопки</h4>
-			<Button
-				renderIcon={(props, state) => (
-					<HomeIcon
-						{...props}
-						color={state.isHovered ? 'red' : 'green'}
-						fontSize={state.isHovered ? '70' : '50'}
-					/>
-				)}
-			/> */
-	}
+	const color = useBackGroundResize()
 
+	return (
+		<>
+			<div style={color}>
+				<Layout />
+			</div>
+		</>
+	)
+
+	// <>
 	{
 		/* //TODO */
 	}
@@ -27,25 +23,6 @@ function App() {
       </h4> */
 	}
 
-	{
-		/* <Children /> */
-	}
-
-	{
-		/* <ResizeDetector>
-        {(windowWidth) => {
-          return windowWidth > 600 ? (
-            <div>nnoksndkjdsnk</div>
-          ) : (
-            <div>!!!!!!!!!!!!!!!!</div>
-          );
-        }}
-      </ResizeDetector> */
-	}
-
-	{
-		/* {width > 600 ? <div>nnoksndkjdsnk</div> : <div>!!!!!!!!!!!!!!!!</div>} */
-	}
 	// </>
 }
 
