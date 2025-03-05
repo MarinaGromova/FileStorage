@@ -2,6 +2,14 @@ import { useState } from 'react'
 import { Button, ButtonIcon } from '../button/Button'
 import styles from './NewTodo.module.scss'
 
+/* TODO: 1. Сделать кнопку DELETE.
+				 2. Доделать кнопку: выбрать всё.
+				 3. Менять местами таски.
+				 4. Добавлять новые таски через кнопку Add.
+				 5. Отмеченные таски становятся перечеркнутыми и переносятся в правый столбик.
+				 6. При нажатии на гамбургер вылетает меню.
+*/
+
 const data = [
 	{ task: 'Stretch' },
 	{ task: 'Studies' },
