@@ -18,9 +18,28 @@ const data = [
 	{ task: 'Vitamins' },
 ]
 
+const dataArray = data.map(item => {
+	return item.task
+})
+
 export const NewTodo = () => {
+	const [tasks, setTasks] = useState(dataArray)
 	const [choice, setChoice] = useState(false)
 	const [choiceAll, setChoiceAll] = useState(false)
+
+	const deleteTask = (index: number) => {
+		const updateTack = tasks.filter((_, i) => i !== index)
+		setTasks(updateTack)
+	}
+
+	// const choiceTask = (index: number) => {
+	// const updateChoice = tasks[index]
+	// console.log(index)
+	// console.log(tasks)
+	// if (updateChoice) {
+	// 	setChoice(!choice)
+	// }
+	// }
 
 	return (
 		<>
@@ -49,14 +68,15 @@ export const NewTodo = () => {
 					<p>ALL</p>
 				</div>
 				<ul className={styles.wrapper}>
-					{data.map((item, index) => (
+					{tasks.map((task, index) => (
 						<li key={index} className={styles.li}>
 							<input
 								type='checkbox'
-								// checked={choiceAll}
-								onChange={() => setChoice(!choice)}
+								// checked={choice}
+								onClick={() => setChoice(!choice)}
 							/>
-							<p className={styles.p}>{item.task}</p>
+							<span className={styles.p}>{task}</span>
+							<button onClick={() => deleteTask(index)}>delete</button>
 						</li>
 					))}
 				</ul>
