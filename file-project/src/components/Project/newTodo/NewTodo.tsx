@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Button, ButtonIcon } from '../button/Button'
 import styles from './NewTodo.module.scss'
 
-/* TODO: 1. Сделать кнопку DELETE.
-				 2. Доделать кнопку: выбрать всё.
+/* TODO: 1. Сделать кнопку DELETE.  ☑
+				 2. Доделать кнопку: выбрать всё. 
 				 3. Менять местами таски.
 				 4. Добавлять новые таски через кнопку Add.
 				 5. Отмеченные таски становятся перечеркнутыми и переносятся в правый столбик.
@@ -11,35 +11,32 @@ import styles from './NewTodo.module.scss'
 */
 
 const data = [
-	{ task: 'Stretch' },
-	{ task: 'Studies' },
-	{ task: 'Water' },
-	{ task: 'Yoga' },
-	{ task: 'Vitamins' },
+	{ id: 1, task: 'Stretch', isDone: false },
+	{ id: 2, task: 'Studies', isDone: true },
+	{ id: 3, task: 'Water', isDone: false },
+	{ id: 4, task: 'Yoga', isDone: false },
+	{ id: 5, task: 'Vitamins', isDone: true },
 ]
 
-const dataArray = data.map(item => {
-	return item.task
-})
-
 export const NewTodo = () => {
-	const [tasks, setTasks] = useState(dataArray)
-	const [choice, setChoice] = useState(false)
+	const [tasks, setTasks] = useState(data)
+	// const [choice, setChoice] = useState(false)
 	const [choiceAll, setChoiceAll] = useState(false)
+	// const [title, setTitle] = useState('')
 
 	const deleteTask = (index: number) => {
 		const updateTack = tasks.filter((_, i) => i !== index)
 		setTasks(updateTack)
 	}
 
-	// const choiceTask = (index: number) => {
-	// const updateChoice = tasks[index]
-	// console.log(index)
-	// console.log(tasks)
-	// if (updateChoice) {
-	// 	setChoice(!choice)
-	// }
-	// }
+	const choiceTask = (index: number, isDone: boolean) => {
+		let task = tasks.find(t => t.id === index)
+		if (task) {
+			task.isDone = isDone
+		}
+		let copy = [...tasks]
+		setTasks(copy)
+	}
 
 	return (
 		<>
@@ -68,17 +65,25 @@ export const NewTodo = () => {
 					<p>ALL</p>
 				</div>
 				<ul className={styles.wrapper}>
-					{tasks.map((task, index) => (
-						<li key={index} className={styles.li}>
-							<input
-								type='checkbox'
-								// checked={choice}
-								onClick={() => setChoice(!choice)}
-							/>
-							<span className={styles.p}>{task}</span>
-							<button onClick={() => deleteTask(index)}>delete</button>
-						</li>
-					))}
+					{tasks.map((t, index) => {
+						const handleChange = (e: ChangeEvent) => {
+							choiceTask(t.id, e.target.checked)
+						}
+						const removeTask = () => {
+							deleteTask(index)
+						}
+						return (
+							<li key={t.id} className={styles.li}>
+								<input
+									type='checkbox'
+									checked={t.isDone}
+									onChange={handleChange}
+								/>
+								<span className={styles.p}>{t.task}</span>
+								<button onClick={removeTask}>delete</button>
+							</li>
+						)
+					})}
 				</ul>
 			</div>
 		</>
