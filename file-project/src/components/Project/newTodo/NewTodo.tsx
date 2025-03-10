@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, ButtonIcon } from '../button/Button'
 import styles from './NewTodo.module.scss'
 
+//
 /* TODO: 1. Сделать кнопку DELETE.  ☑
 				 2. Доделать кнопку: выбрать всё. 
 				 3. Менять местами таски.
