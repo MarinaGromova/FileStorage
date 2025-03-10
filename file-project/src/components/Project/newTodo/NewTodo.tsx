@@ -20,9 +20,7 @@ const data = [
 
 export const NewTodo = () => {
 	const [tasks, setTasks] = useState(data)
-	// const [choice, setChoice] = useState(false)
 	const [choiceAll, setChoiceAll] = useState(false)
-	// const [title, setTitle] = useState('')
 
 	const deleteTask = (index: number) => {
 		const updateTack = tasks.filter((_, i) => i !== index)
