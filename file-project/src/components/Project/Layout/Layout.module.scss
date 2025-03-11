@@ -4,6 +4,11 @@
 	padding: 20px;
 }
 
+.layout {
+	display: flex;
+	justify-content: space-around;
+}
+
 .button {
 	width: 60px;
 	height: 60px;
