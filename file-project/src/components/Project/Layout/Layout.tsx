@@ -25,7 +25,10 @@ export const Layout = () => {
 					<img src='/header/menu.svg' alt='icon menu' />
 				</button>
 			</div>
-			<NewTodo />
+			<div className={styles.layout}>
+				<NewTodo buttonText='TODO' />
+				<NewTodo buttonText='DONE' />
+			</div>
 		</>
 	)
 }
