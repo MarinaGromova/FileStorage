@@ -12,18 +12,6 @@ function App() {
 			</div>
 		</>
 	)
-
-	// <>
-	{
-		/* //TODO */
-	}
-	{
-		/* <h4>
-        Меняем иконку при ховере кнопки на OutLinedButton, без ховера Button
-      </h4> */
-	}
-
-	// </>
 }
 
 export default App
