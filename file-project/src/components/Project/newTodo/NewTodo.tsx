@@ -2,42 +2,29 @@ import { ChangeEvent, useState } from 'react'
 import { Button, ButtonIcon } from '../button/Button'
 import styles from './NewTodo.module.scss'
 
-/* TODO: 1. Сделать кнопку DELETE.  ☑
-				 2. Доделать кнопку: выбрать всё. ☑
-				 3. Менять местами таски.
-				 4. Добавлять новые таски через кнопку Add.
-				 5. Отмеченные таски становятся перечеркнутыми и переносятся в правый столбик.
-				 6. При нажатии на гамбургер вылетает меню.
-*/
+// let data = [
+// 	{ id: 1, task: 'Stretch', isDone: false },
+// 	{ id: 2, task: 'Studies', isDone: true },
+// 	{ id: 3, task: 'Water', isDone: false },
+// 	{ id: 4, task: 'Yoga', isDone: false },
+// 	{ id: 5, task: 'Vitamins', isDone: true },
+// ]
 
-let data = [
-	{
-		id: 1,
-		task: 'Stretch',
+const data: Array<{ id: number; task: string; isDone: boolean }> = []
+for (let i = 0; i < 1000; i++) {
+	data.push({
+		id: i,
+		task: 'Tasks',
 		isDone: false,
-	},
-	{ id: 2, task: 'Studies', isDone: true },
-	{ id: 3, task: 'Water', isDone: false },
-	{ id: 4, task: 'Yoga', isDone: false },
-	{ id: 5, task: 'Vitamins', isDone: true },
-]
+	})
+}
+
 interface NewTodoProps {
 	buttonText: string
 }
 export const NewTodo = ({ buttonText }: NewTodoProps) => {
 	const [tasks, setTasks] = useState(data)
-	// const [tasksActive, setTasksActive] = useState(data)
 	const [choice, setChoiceAll] = useState(false)
-
-	// const choiceActive = () => {
-	// 	setChoiceAll(!choice)
-	// 	if (!choice) {
-	// 		let task = tasks.filter(t => t.isDone === true)
-	// 		setTasks(task)
-	// 	} else {
-	// 		setTasks(tasksAll)
-	// 	}
-	// }
 
 	const choiceAll = () => {
 		setChoiceAll(!choice)
