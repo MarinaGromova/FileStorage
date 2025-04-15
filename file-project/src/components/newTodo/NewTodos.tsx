@@ -1,29 +1,28 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, memo, useState } from 'react'
 import { Button, ButtonIcon } from '../button/Button'
-import styles from './NewTodo.module.scss'
-
-// let data = [
-// 	{ id: 1, task: 'Stretch', isDone: false },
-// 	{ id: 2, task: 'Studies', isDone: true },
-// 	{ id: 3, task: 'Water', isDone: false },
-// 	{ id: 4, task: 'Yoga', isDone: false },
-// 	{ id: 5, task: 'Vitamins', isDone: true },
-// ]
-
-const data: Array<{ id: number; task: string; isDone: boolean }> = []
-for (let i = 0; i < 1000; i++) {
-	data.push({
-		id: i,
-		task: 'Tasks',
-		isDone: false,
-	})
-}
+import { ButtonAll } from '../button/ButtonAll'
+import { data } from './Constants'
+import styles from './NewTodos.module.scss'
 
 interface NewTodoProps {
 	buttonText: string
 }
-export const NewTodo = ({ buttonText }: NewTodoProps) => {
+
+export const NewTodos = memo(({ buttonText }: NewTodoProps) => {
 	const [tasks, setTasks] = useState(data)
+
+	const deleteTask = (index: number) => {
+		const updateTack = tasks.filter((_, i) => i !== index)
+		setTasks(updateTack)
+	}
+
+	const choiceTask = (index: number, isDone: boolean) => {
+		let task = tasks.find(t => t.id === index)
+		if (task) task.isDone = isDone
+		let copy = [...tasks]
+		setTasks(copy)
+	}
+
 	const [choice, setChoiceAll] = useState(false)
 
 	const choiceAll = () => {
@@ -41,18 +40,6 @@ export const NewTodo = ({ buttonText }: NewTodoProps) => {
 			})
 			setTasks(task)
 		}
-	}
-
-	const deleteTask = (index: number) => {
-		const updateTack = tasks.filter((_, i) => i !== index)
-		setTasks(updateTack)
-	}
-
-	const choiceTask = (index: number, isDone: boolean) => {
-		let task = tasks.find(t => t.id === index)
-		if (task) task.isDone = isDone
-		let copy = [...tasks]
-		setTasks(copy)
 	}
 
 	return (
@@ -91,18 +78,9 @@ export const NewTodo = ({ buttonText }: NewTodoProps) => {
 							)
 						})}
 					</ul>
-					<div className={styles.il}>
-						<button className={styles.circle} onClick={choiceAll}>
-							{choice ? (
-								<img src='layout/circle2.svg' />
-							) : (
-								<img src='layout/circle1.svg' />
-							)}
-						</button>
-						<p>ALL</p>
-					</div>
+					<ButtonAll choiceAll={choiceAll} choice={choice} />
 				</div>
 			</div>
 		</>
 	)
-}
+})
