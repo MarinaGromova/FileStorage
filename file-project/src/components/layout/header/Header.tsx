@@ -1,27 +1,16 @@
-import { ReactElement } from 'react'
+import { Link } from 'react-router-dom'
 import styles from '../Layout.module.scss'
-
-interface ParentProps {
-	children: () => ReactElement
-}
-
-const Children = ({ children }: ParentProps) => {
-	return children()
-}
+import { Menu } from './../hamburger/menu'
 
 export const Header = () => {
 	return (
-		<Children
-			children={() => (
-				<>
-					<button className={styles.button}>
-						<img src='/header/profile.svg' alt='icon minion' />
-					</button>
-					<button className={styles.button}>
-						<img src='/header/menu.svg' alt='icon menu' />
-					</button>
-				</>
-			)}
-		/>
+		<>
+			<button className={styles.button}>
+				<Link to={'profile'}>
+					<img src='/header/profile.svg' alt='icon minion' />
+				</Link>
+			</button>
+			<Menu />
+		</>
 	)
 }

@@ -1,7 +1,9 @@
-import { ChangeEvent, memo, useState } from 'react'
+import { memo, useState } from 'react'
 import { Button, ButtonIcon } from '../button/Button'
 import { ButtonAll } from '../button/ButtonAll'
+import stylesLayout from '../layout/Layout.module.scss'
 import { data } from './Constants'
+import { NewTodo } from './NewTodo'
 import styles from './NewTodos.module.scss'
 
 interface NewTodoProps {
@@ -10,6 +12,7 @@ interface NewTodoProps {
 
 export const NewTodos = memo(({ buttonText }: NewTodoProps) => {
 	const [tasks, setTasks] = useState(data)
+	const [choice, setChoiceAll] = useState(false)
 
 	const deleteTask = (index: number) => {
 		const updateTack = tasks.filter((_, i) => i !== index)
@@ -22,8 +25,6 @@ export const NewTodos = memo(({ buttonText }: NewTodoProps) => {
 		let copy = [...tasks]
 		setTasks(copy)
 	}
-
-	const [choice, setChoiceAll] = useState(false)
 
 	const choiceAll = () => {
 		setChoiceAll(!choice)
@@ -44,40 +45,23 @@ export const NewTodos = memo(({ buttonText }: NewTodoProps) => {
 
 	return (
 		<>
-			<div>
-				<Button
-					renderIcon={(props, state) => (
-						<ButtonIcon
-							{...props}
-							text={buttonText}
-							outline={state.isButton ? '4px solid white' : ''}
-							fontSize={40}
-						/>
-					)}
-				/>
+			<Button
+				renderIcon={(props, state) => (
+					<ButtonIcon
+						{...props}
+						text={buttonText}
+						outline={state.isButton ? '4px solid white' : ''}
+						fontSize={40}
+					/>
+				)}
+			/>
+			<div className={stylesLayout.layout}>
 				<div className={styles.wrapper}>
-					<ul className={styles.wrapper}>
-						{tasks.map((t, index) => {
-							return (
-								<li key={t.id} className={styles.li}>
-									<input
-										type='checkbox'
-										checked={t.isDone}
-										onChange={(e: ChangeEvent<HTMLInputElement>) =>
-											choiceTask(t.id, e.target.checked)
-										}
-									/>
-									<span className={styles.p}>{t.task}</span>
-									<button
-										className={styles.close}
-										onClick={() => deleteTask(index)}
-									>
-										<img src='layout/close.svg' />
-									</button>
-								</li>
-							)
-						})}
-					</ul>
+					<NewTodo
+						deleteTask={deleteTask}
+						choiceTask={choiceTask}
+						tasks={tasks}
+					/>
 					<ButtonAll choiceAll={choiceAll} choice={choice} />
 				</div>
 			</div>
