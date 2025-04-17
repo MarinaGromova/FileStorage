@@ -4,7 +4,7 @@ import { useBackGroundResize } from './components/hooks/useBackGroundResize'
 import { Layout } from './components/layout/Layout'
 import { NewTodos } from './components/newTodo/NewTodos'
 
-export const ThemeContext = createContext('default')
+export const ThemeContext = createContext({})
 
 const ThemeProvider = ({ children }: any) => {
 	const colorObject = useBackGroundResize()
