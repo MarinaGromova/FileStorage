@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { ThemeContext } from '../../../App'
+import { ThemeContext } from '../../../providers/ThemeProvider'
 import styles from '../Layout.module.scss'
 import { Menu } from './../hamburger/menu'
 
